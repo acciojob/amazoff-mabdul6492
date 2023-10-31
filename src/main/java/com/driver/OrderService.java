@@ -72,9 +72,6 @@ public class OrderService {
     public String getLastDeliveryTimeByPartnerId(String partnerId) {
 
         List<String> partnerOrders = orderRepository.getOrdersByPartnerId(partnerId);
-        if(partnerOrders == null){
-            return null;
-        }
 
         int lastTime = 0;
         for(String orderId: partnerOrders){

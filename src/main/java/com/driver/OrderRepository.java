@@ -47,6 +47,7 @@ public class OrderRepository {
     }
 
     public Integer  getOrderCountByPartnerId(String partnerId) {
+        if(allPartner.get(partnerId) == null) return null;
         return allPartner.get(partnerId).getNumberOfOrders();
     }
 
