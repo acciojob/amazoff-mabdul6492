@@ -25,17 +25,26 @@ public class OrderRepository {
     }
 
     public void addOrder(Order order) {
-        allOrders.put(order.getId(), order);
+        String oId = order.getId();
+        int dTime = order.getDeliveryTime();
+        if(!oId.isEmpty() && dTime != 0){
+            allOrders.put(oId, order);
+        }
+//        allOrders.put(order.getId(), order);
     }
 
     public void addPartner(String partnerId) {
+        if(partnerId.isEmpty()) return;
         allPartner.put(partnerId, new DeliveryPartner(partnerId));
         partnersOrders.put(partnerId, new ArrayList<>());
     }
 
     public void addOrderPartnerPair(String orderId, String partnerId) {
+        if(!allOrders.containsKey(orderId) || !allPartner.containsKey(partnerId)) return;
         ordersPartner.put(orderId, partnerId);
         partnersOrders.get(partnerId).add(orderId);
+        DeliveryPartner deliveryPartner = allPartner.get(partnerId);
+        deliveryPartner.setNumberOfOrders(deliveryPartner.getNumberOfOrders()+1);
     }
 
     public Order getOrderById(String orderId) {
@@ -46,7 +55,7 @@ public class OrderRepository {
         return allPartner.get(partnerId);
     }
 
-    public Integer  getOrderCountByPartnerId(String partnerId) {
+    public Integer getOrderCountByPartnerId(String partnerId) {
         if(allPartner.get(partnerId) == null) return null;
         return allPartner.get(partnerId).getNumberOfOrders();
     }
