@@ -46,7 +46,7 @@ public class OrderRepository {
         return allPartner.get(partnerId);
     }
 
-    public Integer getOrderCountByPartnerId(String partnerId) {
+    public Integer  getOrderCountByPartnerId(String partnerId) {
         return allPartner.get(partnerId).getNumberOfOrders();
     }
 
