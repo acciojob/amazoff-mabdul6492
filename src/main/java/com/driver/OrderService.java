@@ -84,16 +84,21 @@ public class OrderService {
 
         int hour = lastTime/60;
         int minute = lastTime%60;
+//
+//        String time = "";
+//        if(hour < 10) time += "0";
+//        time += hour;
+//
+//        time += ":";
+//        if(minute < 10) time += "0";
+//        time += minute;
 
-        String time = "";
-        if(hour < 10) time += "0";
-        time += hour;
+//        return hour+":"+minute;
 
-        time += ":";
-        if(minute < 10) time += "0";
-        time += minute;
+        String hrs = String.format("%02d", hour);
+        String mnts = String.format("%02d", minute);
 
-        return hour+":"+minute;
+        return (hrs + ":" + mnts);
 
     }
 
